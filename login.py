@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from values import user_value, pw_value
+import datetime
 
 driver = webdriver.Chrome()
 driver.get("https://te.leidos.com/")
@@ -12,7 +13,22 @@ wait = WebDriverWait(driver, 10)
 
 # Check day of the week
 def day_check():
-    pass
+    date_now = datetime.datetime.now()
+    print(date_now)
+    # Variable that holds today's day
+    day_now = date_now.weekday()
+    print(day_now)
+
+    day_2_code = {
+        0: "DAYS1_HRS-_0_E",
+        1: "DAYS2_HRS-_0_E",
+        2: "DAYS3_HRS-_0_E",
+        3: "DAYS4_HRS-_0_E",
+        4: "DAYS5_HRS-_0_E",
+    }
+
+    day_box = day_2_code.get(day_now)
+    print(day_box)
 
 # Portal
 # Find and input username
@@ -63,9 +79,7 @@ def deltek_login():
     print("CLICK")
 
 
-def input_times():
-    day_check()
-
+def input_codes():
     ack_btn = wait.until(EC.presence_of_element_located((By.ID, "ackBtn")))
     ack_btn.click()
 
@@ -85,14 +99,16 @@ def input_times():
     else:
         pass
 
-    day_box = wait.until(
-        EC.presence_of_element_located((By.))
-    )
+
+def input_time():
+    day_check()
+    # day_box = wait.until(EC.presence_of_element_located((By.)))
 
 
 portal_login()
 deltek_login()
-input_times()
+input_codes()
+input_time()
 
 
 input()
