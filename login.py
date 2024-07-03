@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium import webdriver
 from values import user_value, pw_value
 
 driver = webdriver.Chrome()
@@ -11,8 +10,14 @@ driver.get("https://te.leidos.com/")
 wait = WebDriverWait(driver, 10)
 
 
+# Check day of the week
+def day_check():
+    pass
+
 # Portal
 # Find and input username
+
+
 def portal_login():
     username = driver.find_element(By.NAME, "username")
     username.send_keys(user_value)
@@ -59,6 +64,8 @@ def deltek_login():
 
 
 def input_times():
+    day_check()
+
     ack_btn = wait.until(EC.presence_of_element_located((By.ID, "ackBtn")))
     ack_btn.click()
 
@@ -77,6 +84,10 @@ def input_times():
         pass
     else:
         pass
+
+    day_box = wait.until(
+        EC.presence_of_element_located((By.))
+    )
 
 
 portal_login()
